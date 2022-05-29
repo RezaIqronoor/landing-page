@@ -1,38 +1,57 @@
-import * as React from "react"
+import React from "react";
 import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+    ChakraProvider,
+    Container,
+    Box,
+    Center,
+    Heading,
+    HStack,
+    VStack,
+    Button,
+} from "@chakra-ui/react";
+import Header from "./components/header";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+import theme from "./theme";
+import "./theme/styles.css";
+import welcomePageBackground from "./resources/images/welcomePageBackground.jpg";
+
+export const App: React.FC = (_) => {
+    return (
+        <ChakraProvider theme={theme}>
+            <Container maxW="full" p={0}>
+                <Center
+                    h="100vh"
+                    w="full"
+                    backgroundImage={`url(${welcomePageBackground})`}
+                    bgPos="center"
+                    bgSize="cover"
+                >
+                    <VStack
+                        h="full"
+                        w="full"
+                        backgroundColor="blackAlpha.600"
+                        spacing={0}
+                    >
+                        <Header />
+                        <Center
+                            h="full"
+                            w="full"
+                            justifyContent="center"
+                        >
+                            <VStack>
+                                <Heading
+                                    size={{ base: "3xl", md: "4xl" }}
+                                    color="white"
+                                    zIndex="toast"
+                                >
+                                    Welcome to Landing Page
+                                </Heading>
+                                <Button colorScheme="whiteAlpha">Discover my Portofolios</Button>
+                            </VStack>
+                        </Center>
+                    </VStack>
+                </Center>
+            </Container>
+        </ChakraProvider>
+    );
+};
